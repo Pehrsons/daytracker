@@ -10,16 +10,25 @@ module.exports = function(grunt) {
       },
     },
     copy: {
+      images: {
+        expand: true,
+        cwd: 'src/',
+        src: 'images/**/*',
+        dest: 'build/',
+      },
       index: {
         src: 'src/index.html',
         dest: 'build/index.html',
       },
+      styles: {
+        src: 'src/style.css',
+        dest: 'build/style.css',
+      },
     },
     concat: {
       sources: {
-        expand: true,
         src: ['src/**/*.js'],
-        dest: 'build/main.js',
+        dest: 'build/js/daytracker.js',
       },
     },
   });
@@ -28,6 +37,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-connect');
 
-  grunt.registerTask('default', ['concat:sources', 'copy:index', 'connect:client']);
+  grunt.registerTask('default', ['concat:sources', 'copy:index', 'copy:images', 'copy:styles', 'connect:client']);
 
 };
